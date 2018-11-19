@@ -1,0 +1,7 @@
+export const almostWhite = '#f9f9f9'
+export const dark = '#2d2d2d'
+export const blue = '#59abe5'
+export const green = '#19a825'
+export const warning = '#d82943'
+export const lightGrey = '#e5e5e5'
+export const grey = '#9b9b9b'
