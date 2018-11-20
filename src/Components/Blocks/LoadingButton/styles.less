@@ -1,0 +1,47 @@
+.loading-button-container {
+  color: white;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 4px 0;
+  width: 50%;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+
+  @keyframes loading {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+
+  .title {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    font-size: 20px;
+  }
+
+  .loader-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+
+    .loader {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border-width: 2px;
+      border-color: transparent;
+      border-style: solid;
+      animation: 1s loading infinite linear;
+      margin: 3px 5px;
+    }
+  }
+}
