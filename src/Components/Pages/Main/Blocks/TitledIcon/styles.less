@@ -1,0 +1,32 @@
+@almostWhite: #f9f9f9;
+
+.titled-icon {
+  display: flex;
+  height: 100%;
+  user-select: none;
+  align-items: center;
+  padding: 0 5px;
+  color: @almostWhite;
+  font-style: italic;
+
+  .icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      font-size: 25px;
+    }
+  }
+
+  .title {
+    flex: 1;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    margin-left: 5px;
+    white-space: nowrap;
+  }
+}

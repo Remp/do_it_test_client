@@ -1,0 +1,53 @@
+@dark: #2d2d2d;
+@selected: #111111;
+@almostWhite: #f9f9f9;
+
+.mobile-nav-item {
+  display: flex;
+  height: 40px;
+  user-select: none;
+  align-items: center;
+  padding: 0 5px;
+  color: @dark;
+  cursor: pointer;
+
+  &.selected {
+    background-color: @selected;
+    color: white;
+  }
+
+  @media screen and (min-width: 993px) {
+    height: 100%;
+    color: @almostWhite;
+    padding: 0 15px;
+
+    &:hover {
+      background-color: @selected;
+    }
+  }
+
+  .icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i {
+      font-size: 25px;
+    }
+  }
+
+  .title {
+    flex: 1;
+    display: flex;
+    font-size: 19px;
+    align-items: center;
+    margin-left: 5px;
+    white-space: nowrap;
+
+    &.logo {
+      font-family: 'Lobster two'
+    }
+  }
+}

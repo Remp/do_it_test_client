@@ -1,5 +1,6 @@
 export const almostWhite = '#f9f9f9'
 export const dark = '#2d2d2d'
+export const selected = '#111111'
 export const blue = '#59abe5'
 export const green = '#19a825'
 export const warning = '#d82943'
