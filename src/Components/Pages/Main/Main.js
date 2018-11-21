@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { NavBar } from './Blocks'
+import { NavBar, Map } from './Blocks'
 import './styles.less'
 
 export default class Main extends PureComponent {
@@ -7,6 +7,7 @@ export default class Main extends PureComponent {
     return (
       <div className="main-page-container">
         <NavBar />
+        <Map />
       </div>
     )
   }
