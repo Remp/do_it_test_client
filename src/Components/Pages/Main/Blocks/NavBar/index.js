@@ -8,7 +8,13 @@ export class NavBar extends PureComponent {
   render() {
     return (
       <Media query="(max-width: 992px)">
-        {match => (match ? <MobileLayout /> : <DesktopLayout />)}
+        {match =>
+          match ? (
+            <MobileLayout {...this.props} />
+          ) : (
+            <DesktopLayout {...this.props} />
+          )
+        }
       </Media>
     )
   }
