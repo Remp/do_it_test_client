@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import { GoogleApiWrapper } from 'google-maps-react'
 import { createStructuredSelector } from 'reselect'
+import { withRouter } from 'react-router-dom'
 import { GOOGLE_API_KEY } from 'Configs/googleApi'
 import { getPlaces } from 'Redux/actions/map'
-import { createMarker } from 'Redux/actions/user'
+import { createMarker, saveMarkers } from 'Redux/actions/user'
 import { getPlaceMarkers } from 'Redux/selectors/map'
 import { getUserMarkers } from 'Redux/selectors/user'
 import Component from './Main'
@@ -15,7 +16,8 @@ const selector = createStructuredSelector({
 
 const actions = {
   onGetPlaces: getPlaces,
-  onCreateMarker: createMarker
+  onCreateMarker: createMarker,
+  onSaveMarkers: saveMarkers
 }
 
 const Connected = connect(
@@ -23,6 +25,8 @@ const Connected = connect(
   actions
 )(Component)
 
-export const Main = GoogleApiWrapper({
-  apiKey: GOOGLE_API_KEY
-})(Connected)
+export const Main = withRouter(
+  GoogleApiWrapper({
+    apiKey: GOOGLE_API_KEY
+  })(Connected)
+)

@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react'
 import { Map as GoogleMap, Marker } from 'google-maps-react'
+import _ from 'lodash'
 import { IconButton } from 'Components/Blocks'
 import position from 'Configs/position'
+import * as routes from 'Constants/routes'
 import { NavBar } from './Blocks'
 import './styles.less'
 
 export default class Main extends PureComponent {
   state = {
     isMarkersShown: true,
+    isSaveShown: false,
     currentPlace: null
   }
 
@@ -49,10 +52,18 @@ export default class Main extends PureComponent {
   }
 
   handleSave = () => {
-    const { userMarkers } = this.props
+    const { userMarkers, onSaveMarkers } = this.props
 
     const newMarkers =
       userMarkers && userMarkers.filter(marker => marker.isLocal)
+
+    onSaveMarkers(newMarkers)
+  }
+
+  handleInfoClick = () => {
+    const { history } = this.props
+
+    history.push(routes.about)
   }
 
   renderMarkers = () => {
@@ -71,12 +82,15 @@ export default class Main extends PureComponent {
 
   render() {
     const { isMarkersShown, currentPlace } = this.state
-    const { google } = this.props
+    const { google, userMarkers } = this.props
+
+    const isSaveShown = _.find(userMarkers, marker => marker.isLocal)
 
     return (
       <div className="main-page-container">
         <NavBar
           currentPlace={currentPlace}
+          onInfoClick={this.handleInfoClick}
           onNavItemClick={this.handleGetPlaces}
         />
         <div className="map-container">
@@ -95,11 +109,13 @@ export default class Main extends PureComponent {
             title={isMarkersShown ? 'Hide' : 'Show'}
             onClick={this.handleShowMarkers}
           />
-          <IconButton
-            icon="fas fa-save"
-            title="Save"
-            onClick={this.handleSave}
-          />
+          {isSaveShown && (
+            <IconButton
+              icon="fas fa-save"
+              title="Save"
+              onClick={this.handleSave}
+            />
+          )}
         </div>
       </div>
     )

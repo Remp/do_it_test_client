@@ -15,3 +15,14 @@ export const createMarker = ({ lat, lng }) => ({
   lat,
   lng
 })
+
+export const SAVE_MARKERS = 'user/SAVE_MARKERS'
+export const saveMarkers = markers =>
+  apiCall({
+    types: SAVE_MARKERS,
+    endpoint: 'user/markers',
+    method: 'POST',
+    query: {
+      markers
+    }
+  })

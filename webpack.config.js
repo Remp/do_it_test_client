@@ -38,6 +38,10 @@ module.exports = {
           },
           'eslint-loader'
         ]
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: ['file-loader', 'image-webpack-loader']
       }
     ]
   },
@@ -53,6 +57,9 @@ module.exports = {
     watchContentBase: true,
     hot: true,
     // quiet: true,
-    overlay: false
+    overlay: false,
+    historyApiFallback: {
+      disableDotRule: true
+    }
   }
 }

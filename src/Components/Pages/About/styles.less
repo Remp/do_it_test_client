@@ -1,0 +1,49 @@
+@ocean: #051633;
+
+.about-page-container {
+  background-color: #051633;
+  color: white;
+  height: 100vh;
+  overflow: auto;
+
+  @media screen and (min-width: 577px) {
+    display: flex;
+  }
+
+  .back-button-container {
+    .back-button {
+      font-size: 20px;
+      padding: 20px 20px 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media screen and (min-width: 577px) {
+      flex-direction: row;
+      align-items: flex-start
+    }
+
+    .photo-container {
+      padding: 20px;
+
+      img {
+        width: 100%;
+
+        @media screen and (min-width: 577px) {
+          width: 300px;
+        }
+      }
+    }
+
+    .text {
+      padding: 20px;
+      font-size: 16px;
+    }
+  }
+}

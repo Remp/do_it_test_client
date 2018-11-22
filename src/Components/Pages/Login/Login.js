@@ -12,10 +12,21 @@ import {
   LoadingButton
 } from 'Components/Blocks'
 import * as colors from 'Theme/colors'
+import * as routes from 'Constants/routes'
 import validationSchema from './validationSchema'
 
 export default class Login extends PureComponent {
-  handleSubmitClick = values => {}
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    const { history, token } = nextProps
+
+    if (token) history.push(routes.main)
+  }
+
+  handleSubmitClick = ({ email, password }) => {
+    const { onLogIn } = this.props
+
+    onLogIn({ email, password })
+  }
 
   render() {
     return (

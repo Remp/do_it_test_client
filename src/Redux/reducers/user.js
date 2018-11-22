@@ -1,9 +1,10 @@
 import { createReducer } from 'Helpers/redux'
-import { FETCH_USER, CREATE_MARKER } from 'Redux/actions/user'
+import { FETCH_USER, CREATE_MARKER, SAVE_MARKERS } from 'Redux/actions/user'
 
 const initialState = {
   markers: [],
-  isLoading: false
+  isLoading: false,
+  isSaving: false
 }
 
 const reducer = {
@@ -34,7 +35,30 @@ const reducer = {
     return {
       ...state,
       markers
+    }
+  },
+  [SAVE_MARKERS.REQUEST]: (state, action) => {
+    return {
+      ...state,
+      isSaving: true
+    }
+  },
+  [SAVE_MARKERS.SUCCESS]: (state, { payload }) => {
+    const markers = state.markers.map(marker => ({
+      ...marker,
+      isLocal: false
+    }))
 
+    return {
+      ...state,
+      isSaving: false,
+      markers
+    }
+  },
+  [SAVE_MARKERS.FAILURE]: (state, { payload }) => {
+    return {
+      ...state,
+      isSaving: false
     }
   }
 }
