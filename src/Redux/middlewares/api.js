@@ -1,8 +1,7 @@
 import { Subject } from 'rxjs'
 import axios from 'axios'
-
+import { toast } from 'react-toastify'
 import { api } from 'Configs/app'
-
 import { API_CALL } from '../actions/api'
 
 const sendMethod = HTTPMethod => (HTTPMethod === 'get' ? 'params' : 'data')
@@ -52,6 +51,11 @@ export const apiMiddleware = store => next => action => {
     metadata
   } = action.fields
 
+  const state = store.getState()
+  const { token } = state.auth
+
+  headers['Authentication'] = token
+
   next({
     type: types.REQUEST,
     metadata
@@ -66,6 +70,12 @@ export const apiMiddleware = store => next => action => {
       type: types.FAILURE,
       metadata,
       error: true
+    }
+
+    if (payload.message) {
+      toast.error(payload.message, {
+        position: toast.POSITION.BOTTOM_RIGHT
+      })
     }
 
     next(data)

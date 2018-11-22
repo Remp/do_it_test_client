@@ -1,5 +1,6 @@
 import { createReducer } from 'Helpers/redux'
 import { FETCH_USER, CREATE_MARKER, SAVE_MARKERS } from 'Redux/actions/user'
+import { LOG_IN } from 'Redux/actions/auth'
 
 const initialState = {
   markers: [],
@@ -59,6 +60,13 @@ const reducer = {
     return {
       ...state,
       isSaving: false
+    }
+  },
+  [LOG_IN.SUCCESS]: (state, { payload }) => {
+    const { markers } = payload
+    return {
+      ...state,
+      markers
     }
   }
 }
