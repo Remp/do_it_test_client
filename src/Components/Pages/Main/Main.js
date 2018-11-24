@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import { Map as GoogleMap, Marker } from 'google-maps-react'
 import _ from 'lodash'
-import { IconButton } from 'Components/Blocks'
 import position from 'Configs/position'
 import * as routes from 'Constants/routes'
-import { NavBar } from './Blocks'
+import { NavBar, IconButton } from './Blocks'
 import './styles.less'
 
 export default class Main extends PureComponent {
@@ -55,7 +54,8 @@ export default class Main extends PureComponent {
     const { userMarkers, onSaveMarkers } = this.props
 
     const newMarkers =
-      userMarkers && userMarkers.filter(marker => marker.isLocal)
+      userMarkers &&
+      userMarkers.filter(marker => marker.isLocal).map(marker => marker.coords)
 
     onSaveMarkers(newMarkers)
   }
@@ -67,22 +67,33 @@ export default class Main extends PureComponent {
   }
 
   renderMarkers = () => {
+    return [...this.renderPlaceMarkers(), ...this.renderUserMarkers()]
+  }
+
+  renderPlaceMarkers = () => {
     const { currentPlace } = this.state
-    const { placeMarkers, userMarkers } = this.props
+    const { placeMarkers } = this.props
 
-    const markersToRender = currentPlace ? placeMarkers : userMarkers
+    if (!currentPlace) {
+      return []
+    }
 
-    return (
-      markersToRender &&
-      markersToRender.map((marker, i) => (
-        <Marker key={i} position={marker.coords} />
-      ))
-    )
+    return placeMarkers.map((marker, i) => (
+      <Marker key={`place_${i}`} position={marker.coords} />
+    ))
+  }
+
+  renderUserMarkers = () => {
+    const { userMarkers } = this.props
+
+    return userMarkers.map((marker, i) => (
+      <Marker key={`user_${i}`} position={marker.coords} />
+    ))
   }
 
   render() {
     const { isMarkersShown, currentPlace } = this.state
-    const { google, userMarkers } = this.props
+    const { google, userMarkers, onLogOut } = this.props
 
     const isSaveShown = _.find(userMarkers, marker => marker.isLocal)
 
@@ -91,6 +102,7 @@ export default class Main extends PureComponent {
         <NavBar
           currentPlace={currentPlace}
           onInfoClick={this.handleInfoClick}
+          onLogOut={onLogOut}
           onNavItemClick={this.handleGetPlaces}
         />
         <div className="map-container">

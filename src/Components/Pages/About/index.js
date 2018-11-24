@@ -24,18 +24,18 @@ export class About extends PureComponent {
             <img alt="" src={meImg} />
           </div>
           <div className="text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor porro
-            expedita minus cupiditate veritatis dolores soluta, odio
-            consectetur? Unde repellat tenetur officia, consequatur, quaerat
-            maxime rem magnam dignissimos doloremque non laboriosam delectus
-            ullam omnis nobis modi sapiente quas necessitatibus saepe, expedita
-            est! Totam mollitia aut vitae vel, dicta magni, doloribus, illo
-            possimus dolores dignissimos a sapiente fuga. Quod quia magni,
-            voluptatum vel, deleniti ea voluptates rerum, aliquam quo odit
-            similique. Consequuntur iure provident dignissimos ratione
-            quibusdam! Quia reprehenderit optio quaerat quis. Dolores eum esse
-            expedita alias rerum quae natus! Totam vero, temporibus cum unde
-            magnam amet quisquam repudiandae magni voluptate.
+            I am a passionated young developer, that has a simple dream to do
+            what I really want and thrilled about. I've dived into coding 2
+            years ago and since keep going. I had been learning C# for a half
+            year untill fell in love with Javascript. For a 7 monthes I was
+            working in amazing team and got an amazing experience that greatly
+            enhanced me. I took a participant in projects related with work
+            searching, helping depressed people, design solutions, taxi calling.
+            I am appreciating this experience so much and want to become better.
+            I don't want stay anymore, I want do my best. <br /> <br /> Now I am
+            a student but it is not for a long time. I think we can help each
+            other. I will contribute to your projects and you will make me
+            better. That is perfect terms.
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ const apiCall = (
   endpoint = '',
   method = 'GET',
   query = {},
-  headers = {}
+  headers
 ) => {
   const subject = new Subject()
   const HTTPMethod = method.toLowerCase()
@@ -32,7 +32,7 @@ const apiCall = (
       subject.complete()
     })
     .catch(payload => {
-      subject.error(payload.data)
+      subject.error(payload.response.data)
       subject.complete()
     })
 
@@ -44,7 +44,7 @@ export const apiMiddleware = store => next => action => {
   const {
     url,
     endpoint,
-    headers,
+    headers = {},
     method,
     query,
     types,
@@ -54,7 +54,7 @@ export const apiMiddleware = store => next => action => {
   const state = store.getState()
   const { token } = state.auth
 
-  headers['Authentication'] = token
+  headers['Authorization'] = token
 
   next({
     type: types.REQUEST,
@@ -71,7 +71,6 @@ export const apiMiddleware = store => next => action => {
       metadata,
       error: true
     }
-
     if (payload.message) {
       toast.error(payload.message, {
         position: toast.POSITION.BOTTOM_RIGHT

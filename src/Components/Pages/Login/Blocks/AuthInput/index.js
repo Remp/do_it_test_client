@@ -8,6 +8,7 @@ export const AuthInput = ({
   addonBefore,
   placeholder,
   size,
+  type,
   value,
   onBlur,
   onChange
@@ -18,6 +19,7 @@ export const AuthInput = ({
       name={name}
       placeholder={placeholder}
       size={size}
+      type={type}
       value={value}
       onBlur={onBlur}
       onChange={onChange}

@@ -1,25 +1,18 @@
 import React, { PureComponent } from 'react'
 import { Formik, Form } from 'formik'
-import {
-  AuthContainer,
-  Particles,
-  FormWrapper,
-  FormContainer,
-  AuthHeader,
-  AuthInput,
-  Icon,
-  AuthButtonWrapper,
-  LoadingButton
-} from 'Components/Blocks'
+import { Particles, AuthInput, AuthHeader, Icon, LoadingButton } from './Blocks'
 import * as colors from 'Theme/colors'
 import * as routes from 'Constants/routes'
 import validationSchema from './validationSchema'
+import './styles.less'
 
 export default class Login extends PureComponent {
   static getDerivedStateFromProps = (nextProps, prevState) => {
     const { history, token } = nextProps
 
     if (token) history.push(routes.main)
+
+    return prevState
   }
 
   handleSubmitClick = ({ email, password }) => {
@@ -29,10 +22,12 @@ export default class Login extends PureComponent {
   }
 
   render() {
+    const { isLoading } = this.props
+
     return (
-      <AuthContainer>
+      <div className="auth-container">
         <Particles />
-        <FormWrapper>
+        <div className="form-wrapper">
           <Formik
             initialValues={{ email: '', password: '' }}
             validateOnBlur={false}
@@ -42,8 +37,8 @@ export default class Login extends PureComponent {
           >
             {({ errors, values, handleSubmit, handleBlur, handleChange }) => (
               <Form>
-                <FormContainer>
-                  <AuthHeader icon="" title="Sign in" />
+                <div className="form-container">
+                  <AuthHeader icon="" title="Sign in / up" />
                   <div>
                     <AuthInput
                       addonBefore={
@@ -71,25 +66,26 @@ export default class Login extends PureComponent {
                       name="password"
                       placeholder="*****"
                       size="large"
+                      type="password"
                       value={values.password}
                       onBlur={handleBlur}
                       onChange={handleChange}
                     />
                   </div>
-                  <AuthButtonWrapper>
+                  <div className="auth-button-wrapper">
                     <LoadingButton
                       disabled={true}
-                      isLoading={false}
+                      isLoading={isLoading}
                       title="Go"
                       onClick={handleSubmit}
                     />
-                  </AuthButtonWrapper>
-                </FormContainer>
+                  </div>
+                </div>
               </Form>
             )}
           </Formik>
-        </FormWrapper>
-      </AuthContainer>
+        </div>
+      </div>
     )
   }
 }

@@ -9,6 +9,7 @@ import { About, Login, Main } from './Pages'
 import { PrivateRoute } from './Blocks'
 import './styles.less'
 
+
 class App extends PureComponent {
   componentDidMount() {
     const { token, onFetchUser } = this.props

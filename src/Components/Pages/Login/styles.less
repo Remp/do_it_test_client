@@ -1,0 +1,35 @@
+@dark: #2d2d2d;
+@almostWhite: #f9f9f9;
+
+.auth-container { 
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background-color: @dark;
+
+  .form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .form-container {
+      background-color: @almostWhite;
+      padding: 15px;
+      max-width: 100%;
+      color: @dark;
+      font-weight: bold;
+      border-radius: 15px;
+
+      .auth-button-wrapper { 
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

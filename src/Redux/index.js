@@ -18,10 +18,7 @@ export default history => {
   const composedEnhancers = enhancersCompose(applyMiddleware(...middlewares))
 
   const persistedReducer = persistReducer(persistorConfis, rootReducer(history))
-  const store = createStore(
-    persistedReducer,
-    composedEnhancers(applyMiddleware(...middlewares))
-  )
+  const store = createStore(persistedReducer, composedEnhancers)
   const persistor = persistStore(store)
 
   return { store, persistor }
