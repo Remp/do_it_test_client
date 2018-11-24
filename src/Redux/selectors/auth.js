@@ -6,3 +6,8 @@ export const getToken = createSelector(
   authData,
   data => data.token
 )
+
+export const isLoading = createSelector(
+  authData,
+  data => data.isLoading
+)

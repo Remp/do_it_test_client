@@ -16,11 +16,11 @@ export const createMarker = ({ lat, lng }) => ({
   lng
 })
 
-export const SAVE_MARKERS = 'user/SAVE_MARKERS'
+export const SAVE_MARKERS = createAsyncAction('user/SAVE_MARKERS')
 export const saveMarkers = markers =>
   apiCall({
     types: SAVE_MARKERS,
-    endpoint: 'user/markers',
+    endpoint: '/user/markers',
     method: 'POST',
     query: {
       markers

@@ -1,28 +1,37 @@
 import { createReducer } from 'Helpers/redux'
 import { FETCH_USER, CREATE_MARKER, SAVE_MARKERS } from 'Redux/actions/user'
-import { LOG_IN } from 'Redux/actions/auth'
+import { LOG_IN, LOG_OUT } from 'Redux/actions/auth'
+
+const parseMarkers = markers =>
+  markers.map(marker => ({
+    coords: marker
+  }))
 
 const initialState = {
   markers: [],
   isLoading: false,
-  isSaving: false
+  isSaving: false,
+  email: ''
 }
 
 const reducer = {
   [FETCH_USER.REQUEST]: state => {
     return {
-      isLoading: true,
-      ...state
+      ...state,
+      isLoading: true
     }
   },
   [FETCH_USER.SUCCESS]: (state, { payload }) => {
     return {
+      ...state,
       isLoading: false,
-      markers: payload.markers
+      markers: parseMarkers(payload.markers),
+      email: payload.email
     }
   },
   [FETCH_USER.FAILURE]: (state, { paylaod }) => {
     return {
+      ...state,
       isLoading: false
     }
   },
@@ -63,11 +72,13 @@ const reducer = {
     }
   },
   [LOG_IN.SUCCESS]: (state, { payload }) => {
-    const { markers } = payload
     return {
       ...state,
-      markers
+      markers: parseMarkers(payload.markers)
     }
+  },
+  [LOG_OUT]: () => {
+    return initialState
   }
 }
 

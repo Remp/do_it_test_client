@@ -4,7 +4,7 @@ import './styles.less'
 import { NavItem } from '../NavItem'
 import { TitledIcon } from '../TitledIcon'
 
-export default ({ currentPlace, onNavItemClick, onInfoClick }) => (
+export default ({ currentPlace, onNavItemClick, onInfoClick, onLogOut }) => (
   <nav>
     <div className="upper">
       <TitledIcon icon="fas fa-map" logo title="Mapster" />
@@ -39,7 +39,11 @@ export default ({ currentPlace, onNavItemClick, onInfoClick }) => (
           className="fas fa-question-circle info-button"
           onClick={onInfoClick}
         />
-        <TitledIcon icon="fas fa-sign-out-alt" title="Sign out" />
+        <TitledIcon
+          icon="fas fa-sign-out-alt"
+          title="Sign out"
+          onClick={onLogOut}
+        />
       </div>
     </div>
   </nav>

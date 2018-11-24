@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 import { GOOGLE_API_KEY } from 'Configs/googleApi'
 import { getPlaces } from 'Redux/actions/map'
 import { createMarker, saveMarkers } from 'Redux/actions/user'
+import { logOut } from 'Redux/actions/auth'
 import { getPlaceMarkers } from 'Redux/selectors/map'
 import { getUserMarkers } from 'Redux/selectors/user'
 import Component from './Main'
@@ -17,7 +18,8 @@ const selector = createStructuredSelector({
 const actions = {
   onGetPlaces: getPlaces,
   onCreateMarker: createMarker,
-  onSaveMarkers: saveMarkers
+  onSaveMarkers: saveMarkers,
+  onLogOut: logOut
 }
 
 const Connected = connect(
